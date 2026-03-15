@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>ABdev — Abdourakhmane Ba Diallo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#06090d; --bg2:#0b1018; --card:#0f1520;
+  --border:rgba(255,255,255,0.07); --border2:rgba(255,255,255,0.12);
+  --c:#00d4ff; --c2:#0099cc; --gold:#e8b84b;
+  --txt:#dde4ed; --muted:#5a6a7a; --muted2:#8899aa;
+  --ff:'Outfit',sans-serif; --ffd:'Clash Display',sans-serif;
+  --nav-h:68px;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--txt);font-family:var(--ff);font-weight:400;overflow-x:hidden;line-height:1.6}
+img{display:block;max-width:100%}
+a{text-decoration:none;color:inherit}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--c2);border-radius:4px}
+
+/* CURSOR */
+@media(hover:hover){
+  body{cursor:none}
+  #cur,#cur2{position:fixed;top:0;left:0;border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+  #cur{width:8px;height:8px;background:var(--c)}
+  #cur2{width:32px;height:32px;border:1.5px solid rgba(0,212,255,.4);transition:width .2s,height .2s,opacity .2s}
+}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;height:var(--nav-h);display:flex;align-items:center;justify-content:space-between;padding:0 5vw;background:rgba(6,9,13,.88);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:10px;cursor:pointer}
+.logo-mark{width:38px;height:38px;border-radius:9px;overflow:hidden;flex-shrink:0;box-shadow:0 0 18px rgba(0,212,255,.2);background:linear-gradient(135deg,var(--c),var(--c2))}
+.logo-mark img{width:100%;height:100%;object-fit:cover;display:block}
+.logo-text{font-family:var(--ffd);line-height:1;display:flex;flex-direction:column;gap:2px}
+.logo-text .lt1{font-size:.6rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted2);font-family:var(--ff);font-weight:400}
+.logo-text .lt2{font-size:1.05rem;font-weight:700;color:var(--txt)}
+.logo-text .lt2 em{color:var(--c);font-style:normal}
+.nav-links{display:flex;align-items:center;gap:2rem;list-style:none}
+.nav-links a{font-size:.8rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);transition:color .25s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;right:0;height:1px;background:var(--c);transform:scaleX(0);transform-origin:left;transition:transform .25s}
+.nav-links a:hover,.nav-links a.active{color:var(--txt)}
+.nav-links a:hover::after,.nav-links a.active::after{transform:scaleX(1)}
+.nav-cta{background:var(--c)!important;color:var(--bg)!important;padding:.45rem 1.1rem;border-radius:6px;font-weight:600!important;transition:opacity .2s,transform .2s!important}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{opacity:.88;transform:translateY(-1px)!important}
+
+/* BURGER */
+.burger{display:none;flex-direction:column;justify-content:center;gap:5px;width:40px;height:40px;background:transparent;border:none;cursor:pointer;padding:4px;border-radius:8px;transition:background .2s}
+.burger:hover{background:rgba(255,255,255,.05)}
+.burger span{display:block;height:1.5px;background:var(--txt);border-radius:2px;transition:transform .35s,opacity .35s,width .35s;transform-origin:center}
+.burger span:nth-child(1){width:22px}
+.burger span:nth-child(2){width:15px}
+.burger span:nth-child(3){width:22px}
+.burger.open span:nth-child(1){transform:translateY(6.5px) rotate(45deg);width:22px}
+.burger.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.burger.open span:nth-child(3){transform:translateY(-6.5px) rotate(-45deg);width:22px}
+
+/* MOBILE MENU */
+.mob-menu{position:fixed;top:var(--nav-h);left:0;right:0;bottom:0;background:rgba(6,9,13,.97);backdrop-filter:blur(24px);z-index:190;flex-direction:column;padding:2.5rem 7vw;opacity:0;pointer-events:none;transition:opacity .3s;display:flex;border-top:1px solid var(--border)}
+.mob-menu.open{opacity:1;pointer-events:all}
+.mob-menu a{font-family:var(--ffd);font-size:2rem;font-weight:600;color:var(--muted);padding:.9rem 0;border-bottom:1px solid var(--border);transition:color .2s,padding-left .2s;letter-spacing:-.01em}
+.mob-menu a:last-of-type{border-bottom:none}
+.mob-menu a:hover{color:var(--txt);padding-left:.5rem}
+.mob-cta-link{color:var(--c)!important;margin-top:1.5rem;font-size:1rem!important;border:1px solid rgba(0,212,255,.25)!important;border-radius:8px;padding:.9rem 1.4rem!important;width:fit-content;background:rgba(0,212,255,.07)!important}
+.mob-cta-link:hover{background:rgba(0,212,255,.14)!important;padding-left:1.4rem!important}
+.mob-foot{margin-top:auto;padding-top:2rem;border-top:1px solid var(--border)}
+.mob-foot p{font-size:.78rem;color:var(--muted);margin-bottom:.3rem}
+.mob-foot span{font-size:.9rem;color:var(--c)}
+
+/* HERO */
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:var(--nav-h) 5vw 0;gap:4rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:0;background:radial-gradient(ellipse 55% 60% at 75% 50%,rgba(0,180,220,.06) 0%,transparent 65%),radial-gradient(ellipse 40% 50% at 15% 60%,rgba(0,100,180,.05) 0%,transparent 55%)}
+.hero-grid{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:50px 50px;mask-image:radial-gradient(ellipse 100% 100% at 50% 50%,black 20%,transparent 80%)}
+.hero-left{position:relative;z-index:1}
+.eyebrow{display:inline-flex;align-items:center;gap:.5rem;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--c);border:1px solid rgba(0,212,255,.2);padding:.3rem .9rem;border-radius:100px;margin-bottom:1.8rem;opacity:0;animation:up .8s .1s forwards}
+.eyebrow i{width:6px;height:6px;background:var(--c);border-radius:50%;animation:pulse 2s infinite}
+h1.hn{font-family:var(--ffd);font-size:clamp(2.6rem,4.8vw,4.4rem);font-weight:700;letter-spacing:-.03em;line-height:1;margin-bottom:1.2rem;opacity:0;animation:up .9s .2s forwards}
+h1.hn em{color:var(--c);font-style:normal}
+.hero-roles{display:flex;flex-wrap:wrap;gap:.5rem;margin-bottom:1.6rem;opacity:0;animation:up .9s .35s forwards}
+.rpill{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;padding:.28rem .75rem;border:1px solid var(--border2);border-radius:100px;color:var(--muted2);background:rgba(255,255,255,.02)}
+.hero-desc{font-size:1rem;line-height:1.8;color:rgba(221,228,237,.6);max-width:460px;margin-bottom:2.2rem;opacity:0;animation:up .9s .45s forwards}
+.hero-btns{display:flex;gap:.9rem;flex-wrap:wrap;opacity:0;animation:up .9s .55s forwards}
+.btn{display:inline-flex;align-items:center;gap:.45rem;font-size:.82rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.75rem 1.6rem;border-radius:8px;transition:all .25s}
+.btn-fill{background:var(--c);color:var(--bg)}
+.btn-fill:hover{transform:translateY(-2px);box-shadow:0 10px 28px rgba(0,212,255,.28)}
+.btn-ghost{border:1px solid var(--border2);color:var(--muted2)}
+.btn-ghost:hover{border-color:var(--c);color:var(--c)}
+.hero-right{position:relative;z-index:1;display:flex;justify-content:center;align-items:center;opacity:0;animation:fadeIn 1.2s .5s forwards}
+.photo-wrap{position:relative;width:min(370px,90%)}
+.photo-frame{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5)}
+.photo-frame img{width:100%;height:auto;object-fit:cover;display:block;filter:grayscale(8%);transition:filter .5s}
+.photo-frame:hover img{filter:none}
+.photo-frame::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 55%,rgba(6,9,13,.65) 100%);pointer-events:none}
+.pc{position:absolute;width:28px;height:28px;border-color:var(--c);border-style:solid;opacity:.65}
+.pc.tl{top:-7px;left:-7px;border-width:2px 0 0 2px;border-radius:3px 0 0 0}
+.pc.tr{top:-7px;right:-7px;border-width:2px 2px 0 0;border-radius:0 3px 0 0}
+.pc.bl{bottom:-7px;left:-7px;border-width:0 0 2px 2px;border-radius:0 0 0 3px}
+.pc.br{bottom:-7px;right:-7px;border-width:0 2px 2px 0;border-radius:0 0 3px 0}
+.photo-badge{position:absolute;bottom:1.1rem;left:50%;transform:translateX(-50%);display:inline-flex;align-items:center;gap:.45rem;background:rgba(6,9,13,.88);border:1px solid var(--border2);padding:.45rem 1rem;border-radius:100px;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--txt);backdrop-filter:blur(12px);white-space:nowrap;z-index:2}
+.photo-badge .dot{width:6px;height:6px;background:#22d35a;border-radius:50%;animation:pulse 2s infinite}
+.hero-scroll{position:absolute;bottom:2rem;left:5vw;display:flex;align-items:center;gap:.8rem;font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);opacity:0;animation:up .8s 1.2s forwards}
+.sbar{width:36px;height:1px;background:var(--border2);position:relative;overflow:hidden}
+.sbar::after{content:'';position:absolute;left:-100%;top:0;width:100%;height:100%;background:var(--c);animation:sani 2s 1.5s infinite}
+@keyframes up{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.3;transform:scale(.7)}}
+@keyframes sani{0%{left:-100%}100%{left:100%}}
+
+/* SECTIONS */
+section{padding:7rem 5vw}
+.sl{display:flex;align-items:center;gap:.7rem;font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--c);margin-bottom:.8rem}
+.sl::before{content:'';width:24px;height:1px;background:var(--c)}
+h2.st{font-family:var(--ffd);font-size:clamp(1.9rem,3.5vw,2.8rem);font-weight:700;letter-spacing:-.025em;line-height:1.1;margin-bottom:.8rem}
+.ss{color:var(--muted2);font-size:.92rem;line-height:1.75;max-width:440px}
+.rv {opacity:0;transform:translateY(20px);transition:opacity .7s,transform .7s}
+.rv2{opacity:0;transform:translateY(20px);transition:opacity .7s .12s,transform .7s .12s}
+.rv3{opacity:0;transform:translateY(20px);transition:opacity .7s .22s,transform .7s .22s}
+.rv.on,.rv2.on,.rv3.on{opacity:1;transform:none}
+
+/* ABOUT */
+#about{background:var(--bg2)}
+.about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:5rem;align-items:center;margin-top:4rem}
+.about-left p{font-size:.95rem;line-height:1.85;color:rgba(221,228,237,.65);margin-bottom:1.1rem}
+.chips{display:flex;flex-wrap:wrap;gap:.5rem;margin:1.8rem 0}
+.chip{font-size:.72rem;letter-spacing:.08em;padding:.28rem .75rem;border:1px solid var(--border2);border-radius:100px;color:var(--muted2);background:rgba(255,255,255,.02);transition:all .2s}
+.chip.hi,.chip:hover{border-color:var(--c);color:var(--c);background:rgba(0,212,255,.04)}
+.clinks{display:flex;flex-wrap:wrap;gap:.7rem;margin-top:1.5rem}
+.clink{display:inline-flex;align-items:center;gap:.45rem;font-size:.8rem;color:var(--muted2);border:1px solid var(--border);padding:.45rem 1rem;border-radius:8px;transition:all .2s}
+.clink:hover{border-color:var(--c);color:var(--c)}
+.stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-bottom:2rem}
+.stat{background:var(--card);padding:1.6rem 1rem;text-align:center;transition:background .3s}
+.stat:hover{background:#141e2c}
+.stat-n{font-family:var(--ffd);font-size:2rem;font-weight:700;color:var(--c);display:block;line-height:1;margin-bottom:.3rem}
+.stat-l{font-size:.68rem;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.lang-block h4{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem}
+.lang-item{margin-bottom:1.1rem}
+.lang-top{display:flex;justify-content:space-between;margin-bottom:.4rem}
+.lang-name{font-size:.85rem;font-weight:500}
+.lang-lvl{font-size:.75rem;color:var(--muted)}
+.lang-bar{height:2px;background:var(--border2);border-radius:2px;overflow:hidden}
+.lang-fill{height:100%;background:linear-gradient(90deg,var(--c),var(--c2));border-radius:2px;width:0;transition:width 1.2s ease}
+
+/* SKILLS */
+#skills{background:var(--bg)}
+.sk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden;margin-top:4rem}
+.sk{background:var(--card);padding:1.8rem;transition:background .3s}
+.sk:hover{background:#141e2c}
+.sk-icon{width:40px;height:40px;border:1px solid var(--border2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:1.2rem;margin-bottom:1.2rem}
+.sk h3{font-family:var(--ffd);font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.9rem}
+.tags{display:flex;flex-wrap:wrap;gap:.4rem}
+.tag{font-size:.7rem;padding:.22rem .6rem;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:4px;color:var(--muted2);transition:all .2s}
+.tag.hi,.tag:hover{border-color:var(--c);color:var(--c);background:rgba(0,212,255,.04)}
+
+/* PROJECTS */
+#projects{background:var(--bg2)}
+.proj-hd{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1.5rem;margin-bottom:3.5rem}
+.proj-grid{display:grid;gap:2rem}
+.pcard{background:var(--card);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:grid;grid-template-columns:1.2fr .8fr;transition:border-color .35s,transform .35s,box-shadow .35s}
+.pcard:hover{border-color:rgba(0,212,255,.3);transform:translateY(-4px);box-shadow:0 24px 60px rgba(0,0,0,.4)}
+.pcard-img{position:relative;overflow:hidden;min-height:300px;background:var(--bg)}
+.pcard-img img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform .5s ease}
+.pcard:hover .pcard-img img{transform:scale(1.04)}
+.pcard-img-overlay{position:absolute;inset:0;background:linear-gradient(90deg,transparent 55%,var(--card) 100%);pointer-events:none}
+.live-badge{position:absolute;top:14px;left:14px;display:inline-flex;align-items:center;gap:.4rem;font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;background:rgba(6,9,13,.85);border:1px solid rgba(0,212,255,.3);color:var(--c);padding:.25rem .75rem;border-radius:100px;backdrop-filter:blur(10px)}
+.live-dot{width:5px;height:5px;background:#22d35a;border-radius:50%;animation:pulse 2s infinite}
+.pcard-body{padding:2.4rem 2rem;display:flex;flex-direction:column}
+.pcat{font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--c);margin-bottom:.7rem}
+.ptitle{font-family:var(--ffd);font-size:1.9rem;font-weight:700;letter-spacing:-.02em;line-height:1.1;margin-bottom:.9rem}
+.pdesc{font-size:.88rem;line-height:1.8;color:rgba(221,228,237,.55);flex:1;margin-bottom:1.4rem}
+.ptags{display:flex;flex-wrap:wrap;gap:.4rem;margin-bottom:1.6rem}
+.pactions{display:flex;gap:.7rem;flex-wrap:wrap}
+.pbtn{display:inline-flex;align-items:center;gap:.45rem;font-size:.76rem;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:.6rem 1.2rem;border-radius:7px;transition:all .2s}
+.pbtn-fill{background:var(--c);color:var(--bg)}
+.pbtn-fill:hover{transform:translateY(-2px);box-shadow:0 8px 22px rgba(0,212,255,.28)}
+.pbtn-out{border:1px solid var(--border2);color:var(--muted2)}
+.pbtn-out:hover{border-color:var(--c);color:var(--c)}
+.pcard-soon{background:var(--card);border:1px dashed rgba(255,255,255,.07);border-radius:14px;display:flex;align-items:center;justify-content:center;min-height:100px;padding:2rem;opacity:.4}
+.pcard-soon-inner{text-align:center}
+.plus{width:36px;height:36px;border:1.5px dashed var(--muted);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:1.2rem;margin:0 auto .7rem}
+.pcard-soon p{font-size:.8rem;color:var(--muted)}
+
+/* EXPERIENCE */
+#experience{background:var(--bg)}
+.exp-hd{display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:1.5rem;margin-bottom:4rem}
+.timeline{position:relative;padding-left:1.8rem}
+.timeline::before{content:'';position:absolute;left:0;top:4px;bottom:0;width:1px;background:var(--border2)}
+.ei{position:relative;padding-bottom:3.5rem;opacity:0;transform:translateY(18px);transition:opacity .6s,transform .6s}
+.ei.on{opacity:1;transform:none}
+.ei:last-child{padding-bottom:0}
+.ei-dot{position:absolute;left:-1.84rem;top:4px;width:9px;height:9px;border-radius:50%;background:var(--c);box-shadow:0 0 12px rgba(0,212,255,.5)}
+.ei-date{font-size:.7rem;letter-spacing:.15em;text-transform:uppercase;color:var(--c);margin-bottom:.5rem}
+.ei-co{font-family:var(--ffd);font-size:1.25rem;font-weight:700;margin-bottom:.2rem;display:flex;align-items:center;gap:.7rem;flex-wrap:wrap}
+.badge{font-size:.63rem;letter-spacing:.1em;text-transform:uppercase;padding:.18rem .55rem;border-radius:4px;font-weight:400;font-family:var(--ff)}
+.badge-cdd{border:1px solid var(--gold);color:var(--gold)}
+.badge-fl{border:1px solid var(--muted);color:var(--muted)}
+.badge-st{border:1px solid rgba(255,255,255,.2);color:var(--muted)}
+.ei-role{font-size:.82rem;color:var(--muted2);margin-bottom:.2rem}
+.ei-sub{font-size:.78rem;color:var(--muted);font-style:italic;margin-bottom:1rem}
+.ei-list{list-style:none}
+.ei-list li{font-size:.88rem;line-height:1.7;color:rgba(221,228,237,.6);padding:.25rem 0 .25rem 1.1rem;position:relative}
+.ei-list li::before{content:'↗';position:absolute;left:0;top:.3rem;font-size:.7rem;color:var(--c)}
+
+/* EDUCATION */
+#education{background:var(--bg2)}
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;margin-top:3.5rem}
+.edu-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.8rem;position:relative;overflow:hidden;transition:border-color .3s}
+.edu-card:hover{border-color:rgba(0,212,255,.25)}
+.edu-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--c),transparent)}
+.edu-year{font-size:.68rem;letter-spacing:.18em;text-transform:uppercase;color:var(--c);margin-bottom:.7rem}
+.edu-deg{font-family:var(--ffd);font-size:1.05rem;font-weight:600;line-height:1.3;margin-bottom:.4rem}
+.edu-sch{font-size:.82rem;color:var(--muted2)}
+.certs{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:.5rem}
+.cert{display:inline-flex;align-items:center;gap:.5rem;padding:.55rem 1.1rem;border:1px solid var(--border2);border-radius:100px;font-size:.8rem;background:var(--card);transition:all .25s}
+.cert:hover{border-color:var(--c);color:var(--c)}
+.cert::before{content:'✦';font-size:.55rem;color:var(--gold)}
+
+/* CONTACT */
+#contact{background:var(--bg);text-align:center;position:relative;overflow:hidden}
+#contact::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 50% 50%,rgba(0,212,255,.04) 0%,transparent 70%)}
+#contact .sl{justify-content:center}
+#contact .sl::before{display:none}
+#contact .st{text-align:center}
+.cemail{font-family:var(--ffd);font-size:clamp(1.3rem,3.5vw,2.4rem);font-weight:700;color:var(--txt);border-bottom:2px solid rgba(0,212,255,.25);display:inline-block;margin:1.5rem 0 3rem;transition:color .3s,border-color .3s;letter-spacing:-.02em}
+.cemail:hover{color:var(--c);border-color:var(--c)}
+.cinfo{display:flex;justify-content:center;flex-wrap:wrap;gap:1.5rem}
+.ci{display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:var(--muted2)}
+.ci em{color:var(--c);font-style:normal}
+
+/* FOOTER */
+footer{border-top:1px solid var(--border);padding:1.8rem 5vw;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;font-size:.76rem;color:var(--muted)}
+footer strong{font-family:var(--ffd);font-weight:700;font-size:.95rem;color:var(--c)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  #hero{grid-template-columns:1fr;padding-top:calc(var(--nav-h) + 2.5rem);padding-bottom:4rem;gap:2.5rem}
+  .hero-right{order:-1}
+  .photo-wrap{width:min(240px,65%);margin:0 auto}
+  .hero-left{text-align:center}
+  .eyebrow{margin:0 auto 1.8rem}
+  .hero-roles{justify-content:center}
+  .hero-desc{margin:0 auto 2.2rem}
+  .hero-btns{justify-content:center}
+  .hero-scroll{display:none}
+  .about-grid{grid-template-columns:1fr;gap:3rem}
+  .edu-grid{grid-template-columns:1fr}
+  .pcard{grid-template-columns:1fr}
+  .pcard-img{min-height:200px}
+  .pcard-img-overlay{background:linear-gradient(180deg,transparent 55%,var(--card) 100%)}
+  .nav-links{display:none}
+  .burger{display:flex}
+}
+@media(max-width:520px){
+  section{padding:5rem 5vw}
+  .hero-btns{flex-direction:column;align-items:center}
+  .btn{justify-content:center;width:100%;max-width:280px}
+  footer{flex-direction:column;text-align:center}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur2"></div>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#hero">
+    <div class="logo-mark">
+      <img src="photo.jpg" alt="ABdev">
+    </div>
+    <div class="logo-text">
+      <span class="lt1">Portfolio</span>
+      <span class="lt2"><em>AB</em>dev</span>
+    </div>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">À propos</a></li>
+    <li><a href="#skills">Stack</a></li>
+    <li><a href="#projects">Projets</a></li>
+    <li><a href="#experience">Expériences</a></li>
+    <li><a href="#contact" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="burger" id="burger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MENU MOBILE -->
+<div class="mob-menu" id="mobMenu">
+  <a href="#about"      class="mob-link">À propos</a>
+  <a href="#skills"     class="mob-link">Stack</a>
+  <a href="#projects"   class="mob-link">Projets</a>
+  <a href="#experience" class="mob-link">Expériences</a>
+  <a href="#education"  class="mob-link">Formation</a>
+  <a href="#contact"    class="mob-link mob-cta-link">✉️ Me contacter</a>
+  <div class="mob-foot">
+    <p>Rufisque · Dakar · Sénégal</p>
+    <span>abdoudiallo.dev@gmail.com</span>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-left">
+    <div class="eyebrow"><i></i> Disponible · Développeur Full-Stack</div>
+    <h1 class="hn">Abdourakhmane<br><em>Ba Diallo</em></h1>
+    <div class="hero-roles">
+      <span class="rpill">Full-Stack Dev</span>
+      <span class="rpill">Webmaster</span>
+      <span class="rpill">UI/UX</span>
+      <span class="rpill">Community Mgr</span>
+    </div>
+    <p class="hero-desc">Je conçois et développe des expériences digitales complètes — du design à la mise en production. Basé à Rufisque, Dakar.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-fill">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+        Voir mes projets
+      </a>
+      <a href="Cv_Abdourakhmane.pdf" download class="btn btn-ghost">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Télécharger CV
+      </a>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="photo-wrap">
+      <div class="photo-frame">
+        <img src="photo.jpg" alt="Abdourakhmane Ba Diallo">
+        <div class="pc tl"></div><div class="pc tr"></div>
+        <div class="pc bl"></div><div class="pc br"></div>
+      </div>
+      <div class="photo-badge"><span class="dot"></span> Abdourakhmane Ba Diallo</div>
+    </div>
+  </div>
+  <div class="hero-scroll"><div class="sbar"></div> Scroll</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="sl rv">À propos</div>
+  <h2 class="st rv">Construire le futur<br>digital, bit par bit.</h2>
+  <div class="about-grid">
+    <div class="about-left rv">
+      <p>Développeur Full-Stack passionné, je combine expertise technique et créativité pour livrer des solutions web et mobiles performantes. Mon parcours couvre l'intégralité de la chaîne : UI/UX, front-end, back-end, cloud et déploiement.</p>
+      <p>Actuellement en CDD chez <strong style="color:var(--txt)">Sarpa Group Senegal</strong> et actif en freelance pour <strong style="color:var(--txt)">Sater Sénégal</strong>. Je recherche une opportunité en CDI pour contribuer à des projets ambitieux.</p>
+      <div class="chips">
+        <span class="chip hi">React.js</span><span class="chip hi">Next.js</span>
+        <span class="chip">Laravel</span><span class="chip">Node.js</span>
+        <span class="chip">Flutter</span><span class="chip">Figma</span>
+        <span class="chip">Docker</span><span class="chip">SEO</span>
+      </div>
+      <div class="clinks">
+        <a href="https://abdourakhmane.digisculptsn.com" target="_blank" class="clink">🌐 Portfolio</a>
+        <a href="mailto:abdoudiallo.dev@gmail.com" class="clink">✉️ Email</a>
+        <a href="tel:+221776025307" class="clink">📱 +221 77 602 53 07</a>
+      </div>
+    </div>
+    <div class="rv2">
+      <div class="stats-grid">
+        <div class="stat"><span class="stat-n">3+</span><span class="stat-l">Ans d'exp.</span></div>
+        <div class="stat"><span class="stat-n">10+</span><span class="stat-l">Technologies</span></div>
+        <div class="stat"><span class="stat-n">3</span><span class="stat-l">Certifications</span></div>
+      </div>
+      <div class="lang-block">
+        <h4>Langues</h4>
+        <div class="lang-item">
+          <div class="lang-top"><span class="lang-name">Français</span><span class="lang-lvl">Lu · Écrit · Parlé</span></div>
+          <div class="lang-bar"><div class="lang-fill" data-w="100%"></div></div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-top"><span class="lang-name">Anglais</span><span class="lang-lvl">B2 — Intermédiaire avancé</span></div>
+          <div class="lang-bar"><div class="lang-fill" data-w="72%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sl rv">Compétences</div>
+  <h2 class="st rv">Stack & Outils</h2>
+  <p class="ss rv">Technologies couvrant l'intégralité du cycle de développement.</p>
+  <div class="sk-grid rv2">
+    <div class="sk"><div class="sk-icon">⚡</div><h3>Front-End</h3><div class="tags"><span class="tag hi">React.js</span><span class="tag hi">Next.js</span><span class="tag">Vue.js</span><span class="tag">Angular</span><span class="tag">Flutter</span><span class="tag">HTML/CSS</span></div></div>
+    <div class="sk"><div class="sk-icon">🔧</div><h3>Back-End</h3><div class="tags"><span class="tag hi">Laravel</span><span class="tag hi">Node.js</span><span class="tag">Java</span><span class="tag">REST API</span><span class="tag">MySQL</span><span class="tag">MongoDB</span></div></div>
+    <div class="sk"><div class="sk-icon">☁️</div><h3>Cloud & DevOps</h3><div class="tags"><span class="tag hi">Docker</span><span class="tag">Azure</span><span class="tag">AWS</span><span class="tag">CI/CD</span><span class="tag">Vercel</span></div></div>
+    <div class="sk"><div class="sk-icon">🎨</div><h3>UI/UX & Design</h3><div class="tags"><span class="tag hi">Figma</span><span class="tag">Photoshop</span><span class="tag">Canva</span><span class="tag">SEO</span><span class="tag">Community Mgmt</span></div></div>
+    <div class="sk"><div class="sk-icon">📋</div><h3>Gestion de Projet</h3><div class="tags"><span class="tag hi">Agile/Scrum</span><span class="tag">Trello</span><span class="tag">UML</span><span class="tag">Merise</span></div></div>
+    <div class="sk"><div class="sk-icon">📊</div><h3>Analytics & KPIs</h3><div class="tags"><span class="tag hi">Data Viz</span><span class="tag">Google Analytics</span><span class="tag">KPIs</span><span class="tag">Excel</span></div></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="proj-hd">
+    <div>
+      <div class="sl rv">Projets</div>
+      <h2 class="st rv">Ce que j'ai construit</h2>
+      <p class="ss rv">Produits réels, déployés en production.</p>
+    </div>
+  </div>
+  <div class="proj-grid">
+    <div class="pcard rv">
+      <div class="pcard-img">
+        <img src="nexora-preview.png" alt="Nexora — Plateforme de gestion immobilière">
+        <div class="pcard-img-overlay"></div>
+        <div class="live-badge"><span class="live-dot"></span> En ligne</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcat">SaaS · Immobilier · Sénégal</div>
+        <h3 class="ptitle">Nexora</h3>
+        <p class="pdesc">Plateforme SaaS de gestion immobilière pour le marché sénégalais. Centralise biens, locataires, contrats et loyers. Paiements via <strong style="color:var(--txt)">Wave & Orange Money</strong>. Conçu et développé de A à Z.</p>
+        <div class="ptags">
+          <span class="tag hi">Next.js</span><span class="tag hi">Laravel</span>
+          <span class="tag">Tailwind</span><span class="tag">MySQL</span>
+          <span class="tag">Wave API</span><span class="tag">Orange Money</span>
+          <span class="tag">Figma</span><span class="tag">Vercel</span>
+        </div>
+        <div class="pactions">
+          <a href="https://nexora-sage-nine.vercel.app/index.html" target="_blank" class="pbtn pbtn-fill">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Voir le projet
+          </a>
+          <a href="#contact" class="pbtn pbtn-out">En savoir plus</a>
+        </div>
+      </div>
+    </div>
+    <div class="pcard-soon rv2">
+      <div class="pcard-soon-inner">
+        <div class="plus">+</div>
+        <p>D'autres projets arrivent…</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="exp-hd">
+    <div>
+      <div class="sl">Parcours</div>
+      <h2 class="st rv">Expériences<br>Professionnelles</h2>
+    </div>
+    <a href="Cv_Abdourakhmane.pdf" download class="btn btn-ghost rv">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      Télécharger CV
+    </a>
+  </div>
+  <div class="timeline">
+    <div class="ei"><div class="ei-dot"></div>
+      <div class="ei-date">Déc. 2024 — Juil. 2026</div>
+      <div class="ei-co">Sarpa Group Senegal <span class="badge badge-cdd">CDD 1 an</span></div>
+      <div class="ei-role">Webmaster · Community Manager · UI Designer</div>
+      <div class="ei-sub">Sarpa Immobilier / Sarpa Logistics / Sarpa Béton</div>
+      <ul class="ei-list">
+        <li>Gestion et mise à jour du site web</li>
+        <li>Optimisation SEO pour améliorer la visibilité</li>
+        <li>Maintenance technique et correction des bugs</li>
+        <li>Gestion des réseaux sociaux des trois entités</li>
+        <li>Conception de visuels et flyers pour la communication</li>
+      </ul>
+    </div>
+    <div class="ei"><div class="ei-dot"></div>
+      <div class="ei-date">Fév. 2025 — Présent</div>
+      <div class="ei-co">Sater Sénégal <span class="badge badge-fl">Freelance</span></div>
+      <div class="ei-role">Webmaster · Community Manager</div>
+      <ul class="ei-list">
+        <li>Création, mise à jour et gestion du site web</li>
+        <li>Optimisation SEO et amélioration du référencement</li>
+        <li>Maintenance technique et correction de bugs</li>
+        <li>Création et gestion des pages réseaux sociaux</li>
+        <li>Reporting des performances avec des KPIs précis</li>
+      </ul>
+    </div>
+    <div class="ei"><div class="ei-dot"></div>
+      <div class="ei-date">Nov. 2024 — Déc. 2024</div>
+      <div class="ei-co">Dieylani <span class="badge badge-st">Stage</span></div>
+      <div class="ei-role">Stagiaire — Design & Réseaux Sociaux</div>
+      <ul class="ei-list">
+        <li>Design d'interfaces avec Figma</li>
+        <li>Gestion et animation des réseaux sociaux</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="sl rv">Formation</div>
+  <h2 class="st rv">Parcours Académique<br>& Certifications</h2>
+  <div class="edu-grid rv2">
+    <div class="edu-card">
+      <div class="edu-year">2023 — 2024</div>
+      <div class="edu-deg">Licence 3 en Informatique<br>Développement Web & Mobile</div>
+      <div class="edu-sch">Université Numérique Cheikh Hamidou Kane</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-year">2020 — 2021</div>
+      <div class="edu-deg">Baccalauréat</div>
+      <div class="edu-sch">Lycée Camp Marchand de Rufisque</div>
+    </div>
+  </div>
+  <div class="rv3" style="margin-top:2.5rem">
+    <div class="sl" style="margin-bottom:1rem">Certifications</div>
+    <div class="certs">
+      <div class="cert">Développement Full Stack — CFLT</div>
+      <div class="cert">Informatique et Internet — Force N</div>
+      <div class="cert">Data Visualization — Coursera</div>
+    </div>
+  </div>
+  <div class="rv3" style="margin-top:2.5rem">
+    <div class="sl" style="margin-bottom:1rem">Centres d'intérêts</div>
+    <div style="display:flex;flex-wrap:wrap;gap:.6rem">
+      <span class="chip">💻 Codage créatif</span>
+      <span class="chip">📚 Lecture</span>
+      <span class="chip">✈️ Voyage</span>
+      <span class="chip">⚽ Football</span>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="sl rv">Contact</div>
+  <h2 class="st rv">Travaillons ensemble.</h2>
+  <p class="ss rv" style="margin:0 auto .5rem;text-align:center">Ouvert aux opportunités CDI, projets freelance et collaborations.</p>
+  <a href="mailto:abdoudiallo.dev@gmail.com" class="cemail rv">abdoudiallo.dev@gmail.com</a>
+  <div class="cinfo rv2">
+    <div class="ci"><em>📍</em> Rufisque, Arafat 4, Dakar</div>
+    <div class="ci"><em>📱</em> +221 77 602 53 07</div>
+    <div class="ci"><em>🌐</em><a href="https://abdourakhmane.digisculptsn.com" target="_blank" style="color:var(--c)">abdourakhmane.digisculptsn.com</a></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <span>© 2026 Abdourakhmane Ba Diallo</span>
+  <strong>ABdev</strong>
+  <span>Rufisque · Dakar · Sénégal</span>
+</footer>
+
+<script>
+/* CURSOR */
+const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
+if(window.matchMedia('(hover:hover)').matches&&cur){
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY},{passive:true});
+  (function loop(){
+    cur.style.transform=`translate(${mx-4}px,${my-4}px)`;
+    rx+=(mx-rx)*.12;ry+=(my-ry)*.12;
+    cur2.style.transform=`translate(${rx-16}px,${ry-16}px)`;
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('a,button,.pcard,.edu-card,.sk,.stat').forEach(el=>{
+    el.addEventListener('mouseenter',()=>{cur2.style.width='50px';cur2.style.height='50px';cur2.style.opacity='.9'});
+    el.addEventListener('mouseleave',()=>{cur2.style.width='32px';cur2.style.height='32px';cur2.style.opacity='.5'});
+  });
+}
+
+/* BURGER */
+const burger=document.getElementById('burger'),mobMenu=document.getElementById('mobMenu');
+let isOpen=false;
+function setMenu(v){
+  isOpen=v;
+  burger.classList.toggle('open',v);
+  mobMenu.classList.toggle('open',v);
+  document.body.style.overflow=v?'hidden':'';
+}
+burger.addEventListener('click',()=>setMenu(!isOpen));
+document.querySelectorAll('.mob-link').forEach(l=>l.addEventListener('click',()=>setMenu(false)));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')setMenu(false)});
+
+/* REVEAL */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('on')});
+},{threshold:0.1});
+document.querySelectorAll('.rv,.rv2,.rv3,.ei').forEach(el=>io.observe(el));
+
+/* LANG BARS */
+const lo=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.style.width=e.target.dataset.w});
+},{threshold:0.5});
+document.querySelectorAll('.lang-fill').forEach(el=>lo.observe(el));
+
+/* ACTIVE NAV */
+const secs=document.querySelectorAll('section[id]'),navAs=document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll',()=>{
+  let c='';
+  secs.forEach(s=>{if(window.scrollY>=s.offsetTop-130)c=s.id});
+  navAs.forEach(a=>{a.classList.toggle('active',!a.classList.contains('nav-cta')&&a.getAttribute('href')==='#'+c)});
+},{passive:true});
+</script>
+</body>
+</html>
