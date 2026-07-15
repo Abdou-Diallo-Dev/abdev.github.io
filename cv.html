@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>CV — Abdourakhmane Ba Diallo</title>
+<meta name="description" content="Curriculum Vitae — Abdourakhmane Ba Diallo, Responsable Digital & Tech Lead chez Sarpa Group Senegal, fondateur de Nexora."/>
+<meta name="robots" content="noindex"/>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2300d4ff'/%3E%3Cstop offset='1' stop-color='%230099cc'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='%2306090d'/%3E%3Crect x='4' y='4' width='56' height='56' rx='11' fill='url(%23g)'/%3E%3Ctext x='32' y='42' font-family='Arial,sans-serif' font-weight='700' font-size='28' fill='%2306090d' text-anchor='middle'%3EAB%3C/text%3E%3C/svg%3E"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@500;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#06090d; --card:#0f1520;
+  --border:rgba(255,255,255,0.09); --border2:rgba(255,255,255,0.14);
+  --c:#00d4ff; --c2:#0099cc; --gold:#e8b84b;
+  --txt:#dde4ed; --muted:#5a6a7a; --muted2:#8899aa;
+  --ff:'Outfit',sans-serif; --ffd:'Clash Display',sans-serif;
+}
+html{background:#1a1f27}
+body{background:var(--bg);color:var(--txt);font-family:var(--ff);font-weight:400;line-height:1.5;font-size:13px}
+a{text-decoration:none;color:inherit}
+img{display:block;max-width:100%}
+
+.toolbar{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:center;gap:1rem;padding:.9rem 1rem;background:rgba(6,9,13,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.toolbar p{color:var(--muted2);font-size:.8rem}
+.pbtn{display:inline-flex;align-items:center;gap:.5rem;background:var(--c);color:var(--bg);border:none;padding:.65rem 1.3rem;border-radius:7px;font-family:var(--ff);font-weight:600;font-size:.85rem;cursor:pointer;transition:transform .2s,opacity .2s}
+.pbtn:hover{transform:translateY(-2px)}
+.back{color:var(--muted2);font-size:.85rem;display:inline-flex;align-items:center;gap:.4rem}
+.back:hover{color:var(--txt)}
+
+.page{max-width:850px;margin:5rem auto 3rem;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:2.6rem 3rem;box-shadow:0 30px 80px rgba(0,0,0,.4)}
+
+.cv-head{display:flex;gap:1.6rem;align-items:center;padding-bottom:1.6rem;border-bottom:1px solid var(--border)}
+.cv-photo{width:96px;height:96px;border-radius:14px;overflow:hidden;flex-shrink:0;box-shadow:0 0 0 3px var(--bg),0 0 0 4px var(--border2)}
+.cv-photo img{width:100%;height:100%;object-fit:cover}
+.cv-id h1{font-family:var(--ffd);font-size:1.7rem;font-weight:700;letter-spacing:-.01em;color:var(--txt)}
+.cv-id h1 em{color:var(--c);font-style:normal}
+.cv-role{font-size:.85rem;color:var(--muted2);margin-top:.35rem;font-weight:500}
+.cv-contact{display:flex;flex-wrap:wrap;gap:1rem 1.4rem;margin-top:.7rem}
+.cv-contact a,.cv-contact span{display:inline-flex;align-items:center;gap:.4rem;font-size:.76rem;color:var(--muted2)}
+.cv-contact svg{color:var(--c);flex-shrink:0}
+.cv-contact a:hover{color:var(--txt)}
+
+.cv-summary{padding:1.4rem 0;border-bottom:1px solid var(--border);color:var(--muted2);font-size:.85rem;line-height:1.7}
+.cv-summary strong{color:var(--txt);font-weight:600}
+
+.cv-body{display:grid;grid-template-columns:1fr 1.75fr;gap:2.4rem;padding-top:1.6rem}
+
+.cv-sec{margin-bottom:1.7rem}
+.cv-sec:last-child{margin-bottom:0}
+.cv-h{font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--c);font-weight:600;margin-bottom:.8rem;display:flex;align-items:center;gap:.5rem}
+.cv-h::before{content:'';width:14px;height:1px;background:var(--c)}
+
+.edu-it{margin-bottom:.9rem}
+.edu-it:last-child{margin-bottom:0}
+.edu-it .yr{font-size:.7rem;color:var(--gold);font-weight:600}
+.edu-it .deg{font-size:.82rem;color:var(--txt);font-weight:600;margin-top:.15rem}
+.edu-it .sch{font-size:.76rem;color:var(--muted2);margin-top:.1rem}
+
+.skl{margin-bottom:.7rem}
+.skl:last-child{margin-bottom:0}
+.skl b{font-size:.78rem;color:var(--txt);font-weight:600;display:block;margin-bottom:.2rem}
+.skl span{font-size:.75rem;color:var(--muted2)}
+
+.cert-it{font-size:.78rem;color:var(--muted2);margin-bottom:.55rem;padding-left:.95rem;position:relative}
+.cert-it:last-child{margin-bottom:0}
+.cert-it::before{content:'';position:absolute;left:0;top:.42rem;width:7px;height:7px;background:var(--gold);
+  -webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000'%3E%3Cpath d='M12 2l2.4 7.2H22l-6 4.6 2.3 7.2L12 16.4l-6.3 4.6L8 13.8l-6-4.6h7.6z'/%3E%3C/svg%3E") no-repeat center/contain;
+  mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23000'%3E%3Cpath d='M12 2l2.4 7.2H22l-6 4.6 2.3 7.2L12 16.4l-6.3 4.6L8 13.8l-6-4.6h7.6z'/%3E%3C/svg%3E") no-repeat center/contain}
+
+.lang-it{margin-bottom:.8rem}
+.lang-it:last-child{margin-bottom:0}
+.lang-top{display:flex;justify-content:space-between;font-size:.76rem;margin-bottom:.3rem}
+.lang-top b{color:var(--txt);font-weight:600}
+.lang-top span{color:var(--muted2)}
+.lang-bar{height:4px;border-radius:3px;background:rgba(255,255,255,.08);overflow:hidden}
+.lang-fill{height:100%;background:linear-gradient(90deg,var(--c2),var(--c));border-radius:3px}
+
+.interests{display:flex;flex-wrap:wrap;gap:.4rem}
+.itag{font-size:.72rem;color:var(--muted2);border:1px solid var(--border2);border-radius:99px;padding:.28rem .65rem}
+
+.exp-it{margin-bottom:1.3rem;padding-bottom:1.3rem;border-bottom:1px solid var(--border);break-inside:avoid}
+.exp-it:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.exp-top{display:flex;justify-content:space-between;align-items:baseline;gap:.6rem;flex-wrap:wrap}
+.exp-co{font-size:.9rem;font-weight:600;color:var(--txt)}
+.exp-badge{font-size:.62rem;text-transform:uppercase;letter-spacing:.06em;color:var(--c);border:1px solid rgba(0,212,255,.3);border-radius:99px;padding:.12rem .5rem;margin-left:.4rem}
+.exp-date{font-size:.72rem;color:var(--gold);white-space:nowrap;font-weight:500}
+.exp-role{font-size:.8rem;color:var(--muted2);margin-top:.15rem;font-weight:500}
+.exp-sub{font-size:.72rem;color:var(--muted);margin-top:.1rem;font-style:italic}
+.exp-list{margin-top:.55rem;padding-left:1rem}
+.exp-list li{font-size:.76rem;color:var(--muted2);margin-bottom:.28rem;line-height:1.55}
+.exp-list li:last-child{margin-bottom:0}
+
+.cv-foot{margin-top:1.8rem;padding-top:1.2rem;border-top:1px solid var(--border);font-size:.74rem;color:var(--muted);text-align:center}
+
+@media(max-width:760px){
+  .cv-body{grid-template-columns:1fr}
+  .page{padding:1.6rem}
+  .cv-head{flex-direction:column;text-align:center}
+  .cv-contact{justify-content:center}
+}
+
+@media print{
+  .toolbar{display:none}
+  html,body{background:#06090d!important}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact;color-adjust:exact}
+  .page{margin:0 auto;box-shadow:none;border:none;border-radius:0;max-width:100%}
+  .cv-body{display:block}
+  .cv-col:first-child{margin-bottom:1.6rem}
+  .exp-it,.edu-it,.cert-it,.lang-it,.skl{page-break-inside:avoid}
+  .cv-h{page-break-after:avoid}
+  @page{size:A4;margin:12mm}
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar no-print">
+  <a href="index.html" class="back">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    Retour au portfolio
+  </a>
+  <button class="pbtn" onclick="window.print()">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 6 2 18 2 18 9"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+    Télécharger en PDF
+  </button>
+  <p>Choisissez « Enregistrer en PDF » dans la fenêtre d'impression</p>
+</div>
+
+<div class="page">
+
+  <div class="cv-head">
+    <div class="cv-photo">
+      <picture>
+        <source srcset="photo.webp" type="image/webp">
+        <img src="photo.jpg" alt="Abdourakhmane Ba Diallo">
+      </picture>
+    </div>
+    <div class="cv-id">
+      <h1>Abdourakhmane <em>Ba Diallo</em></h1>
+      <div class="cv-role">Founder & Product Lead — Nexora · Responsable Digital & Tech Lead · Architecte de solutions SaaS</div>
+      <div class="cv-contact">
+        <a href="https://abdou-diallo-dev.github.io/abdev.github.io/" target="_blank"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20 15 15 0 0 1 0-20"/></svg> abdou-diallo-dev.github.io/abdev.github.io</a>
+        <a href="mailto:abdoudiallo.dev@gmail.com"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 6-10 7L2 6"/></svg> abdoudiallo.dev@gmail.com</a>
+        <a href="tel:+221776025307"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg> +221 77 602 53 07</a>
+        <span><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Rufisque, Arafat 4, Dakar</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="cv-summary">
+    Responsable Digital & Tech Lead chez <strong>Sarpa Group Senegal</strong> et fondateur de <strong>Nexora</strong>, une plateforme SaaS de gestion d'entreprises. Passionné par les technologies web et la transformation digitale, je conçois des solutions innovantes qui optimisent les processus métiers et créent de la valeur pour les organisations — de la stratégie à l'architecture, jusqu'au déploiement.
+  </div>
+
+  <div class="cv-body">
+    <div class="cv-col">
+
+      <div class="cv-sec">
+        <div class="cv-h">Formations</div>
+        <div class="edu-it">
+          <div class="yr">2023 — 2024</div>
+          <div class="deg">Licence en Informatique<br>Développement Web & Mobile</div>
+          <div class="sch">Université Numérique Cheikh Hamidou Kane</div>
+        </div>
+        <div class="edu-it">
+          <div class="yr">2020 — 2021</div>
+          <div class="deg">Baccalauréat</div>
+          <div class="sch">Lycée Camp Marchand de Rufisque</div>
+        </div>
+      </div>
+
+      <div class="cv-sec">
+        <div class="cv-h">Compétences</div>
+        <div class="skl"><b>Gestion de projet</b><span>UML, Trello, Agile/Scrum, Merise</span></div>
+        <div class="skl"><b>Web & Mobile</b><span>React.js, Next.js, Vue.js, Angular, Laravel, Node.js, Flutter, Java</span></div>
+        <div class="skl"><b>Cloud & DevOps</b><span>Docker, Azure, AWS, CI/CD, Vercel</span></div>
+        <div class="skl"><b>UI/UX & Communication</b><span>Figma, Photoshop, Canva, SEO, Community Management</span></div>
+        <div class="skl"><b>Pack Office</b><span>Word, Excel, PowerPoint</span></div>
+      </div>
+
+      <div class="cv-sec">
+        <div class="cv-h">Certifications</div>
+        <div class="cert-it">Développement Full Stack — CFLT</div>
+        <div class="cert-it">Informatique et Internet — Force N</div>
+        <div class="cert-it">Data Visualization — Coursera</div>
+      </div>
+
+      <div class="cv-sec">
+        <div class="cv-h">Langues</div>
+        <div class="lang-it">
+          <div class="lang-top"><b>Français</b><span>Lu · Écrit · Parlé</span></div>
+          <div class="lang-bar"><div class="lang-fill" style="width:100%"></div></div>
+        </div>
+        <div class="lang-it">
+          <div class="lang-top"><b>Anglais</b><span>B2 — Intermédiaire avancé</span></div>
+          <div class="lang-bar"><div class="lang-fill" style="width:72%"></div></div>
+        </div>
+      </div>
+
+      <div class="cv-sec">
+        <div class="cv-h">Centres d'intérêt</div>
+        <div class="interests">
+          <span class="itag">Codage créatif</span>
+          <span class="itag">Lecture</span>
+          <span class="itag">Voyage</span>
+          <span class="itag">Football</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="cv-col">
+      <div class="cv-sec">
+        <div class="cv-h">Expériences Professionnelles</div>
+
+        <div class="exp-it">
+          <div class="exp-top"><span class="exp-co">Nexora <span class="exp-badge">Fondateur</span></span><span class="exp-date">Fév. 2025 — Présent</span></div>
+          <div class="exp-role">Fondateur · Product Lead</div>
+          <ul class="exp-list">
+            <li>Conception et développement de la plateforme SaaS Nexora</li>
+            <li>Architecture multi-filiales avec gestion des accès (RBAC) et sécurité des données (RLS)</li>
+            <li>Développement des modules Immobilier, Logistique, Béton, RH et Direction Générale</li>
+            <li>Conception de tableaux de bord décisionnels et KPI en temps réel</li>
+            <li>Déploiement, maintenance et amélioration continue de la plateforme</li>
+          </ul>
+        </div>
+
+        <div class="exp-it">
+          <div class="exp-top"><span class="exp-co">Sarpa Group Senegal <span class="exp-badge">CDI</span></span><span class="exp-date">Juil. 2026 — Présent</span></div>
+          <div class="exp-role">Responsable Digital · Tech Lead</div>
+          <div class="exp-sub">Sarpa Immobilier / Sarpa Logistics / Sarpa Béton</div>
+          <ul class="exp-list">
+            <li>Définir et piloter la stratégie digitale de l'entreprise</li>
+            <li>Superviser les outils numériques utilisés par l'entreprise</li>
+            <li>Administrer et coordonner l'utilisation de Nexora et des autres solutions digitales</li>
+            <li>Identifier les besoins numériques des différents services</li>
+            <li>Garantir la sécurité, la disponibilité et le bon fonctionnement des systèmes numériques</li>
+            <li>Faire le lien entre la direction et les prestataires ou développeurs externes</li>
+            <li>Assurer le suivi, la maintenance et les améliorations mineures des plateformes existantes</li>
+            <li>Produire des rapports et indicateurs sur les performances des outils digitaux</li>
+            <li>Encadrer les futurs collaborateurs ou prestataires techniques</li>
+          </ul>
+        </div>
+
+        <div class="exp-it">
+          <div class="exp-top"><span class="exp-co">Sarpa Group Senegal <span class="exp-badge">CDD 1 an</span></span><span class="exp-date">Déc. 2024 — Juil. 2026</span></div>
+          <div class="exp-role">Webmaster · Community Manager · UI Designer</div>
+          <div class="exp-sub">Sarpa Immobilier / Sarpa Logistics / Sarpa Béton</div>
+          <ul class="exp-list">
+            <li>Gestion et mise à jour du site web de l'entreprise</li>
+            <li>Optimisation SEO pour améliorer la visibilité sur les moteurs de recherche</li>
+            <li>Maintenance technique et correction des bugs éventuels du site web</li>
+            <li>Gestion des pages de l'entreprise sur les réseaux sociaux</li>
+            <li>Conception de visuels et flyers pour la communication digitale et print</li>
+          </ul>
+        </div>
+
+        <div class="exp-it">
+          <div class="exp-top"><span class="exp-co">Sater Sénégal <span class="exp-badge">Freelance</span></span><span class="exp-date">Fév. 2025 — Janv. 2026</span></div>
+          <div class="exp-role">Webmaster · Community Manager</div>
+          <ul class="exp-list">
+            <li>Création, mise à jour et gestion du site web</li>
+            <li>Optimisation SEO et amélioration du référencement</li>
+            <li>Maintenance technique et correction de bugs</li>
+            <li>Création et gestion des pages réseaux sociaux</li>
+            <li>Reporting des performances avec des KPIs précis</li>
+          </ul>
+        </div>
+
+        <div class="exp-it">
+          <div class="exp-top"><span class="exp-co">Dieylani <span class="exp-badge">Stage</span></span><span class="exp-date">Nov. 2024 — Déc. 2024</span></div>
+          <div class="exp-role">Stagiaire — Design & Réseaux Sociaux</div>
+          <ul class="exp-list">
+            <li>Design d'interfaces avec Figma</li>
+            <li>Gestion et animation des réseaux sociaux</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="cv-foot">Références disponibles sur demande.</div>
+
+</div>
+
+</body>
+</html>
